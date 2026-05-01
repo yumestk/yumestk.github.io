@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'yumestk',
   description: 'Personal blog and portfolio',
-  base: '/blog-web/',
+  base: '/',
 
   head: [
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
@@ -54,6 +54,6 @@ export default defineConfig({
 
   // Sitemap for SEO
   sitemap: {
-    hostname: 'https://yumestk.github.io/blog-web/'
+    hostname: 'https://yumestk.github.io/'
   }
 })

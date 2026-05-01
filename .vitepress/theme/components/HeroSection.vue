@@ -23,7 +23,7 @@
       </p>
 
       <div class="p3r-hero-actions">
-        <a href="/blog-web/blog/" class="p3r-btn">
+        <a href="/blog/" class="p3r-btn">
           Read Blog
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>

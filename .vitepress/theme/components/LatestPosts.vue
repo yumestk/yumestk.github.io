@@ -59,7 +59,7 @@ onMounted(async () => {
       const m = mod as any
       const fm = m?.frontmatter || m?.default?.frontmatter
       if (fm?.title && fm?.date) {
-        const url = path.replace('/blog/', '/blog-web/blog/').replace('.md', '')
+        const url = path.replace('/blog/', '/blog/').replace('.md', '')
         allPosts.push({
           title: fm.title,
           date: fm.date,

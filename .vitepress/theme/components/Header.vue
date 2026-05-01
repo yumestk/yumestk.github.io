@@ -1,7 +1,7 @@
 <template>
   <header class="p3r-header" :class="{ scrolled: isScrolled }">
     <div class="p3r-header-inner">
-      <a href="/blog-web/" class="p3r-logo">
+      <a href="/" class="p3r-logo">
         <span class="p3r-logo-bracket">[</span>
         <span class="p3r-logo-text">YUMESTK</span>
         <span class="p3r-logo-bracket">]</span>
@@ -46,9 +46,9 @@ const isScrolled = ref(false)
 const menuOpen = ref(false)
 
 const navItems = [
-  { text: 'Home', link: '/blog-web/' },
-  { text: 'Blog', link: '/blog-web/blog/' },
-  { text: 'About', link: '/blog-web/about' }
+  { text: 'Home', link: '/' },
+  { text: 'Blog', link: '/blog/' },
+  { text: 'About', link: '/about' }
 ]
 
 const isActive = (link: string) => {

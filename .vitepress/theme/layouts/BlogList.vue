@@ -75,7 +75,7 @@ onMounted(async () => {
           title: fm.title,
           date: fm.date,
           abstract: fm.abstract || '',
-          url: `/blog-web/blog/${slug}`
+          url: `/blog/${slug}`
         })
       }
     }

@@ -34,7 +34,7 @@
         <LatestPosts :limit="3" />
 
         <div class="p3r-blog-more">
-          <a href="/blog-web/blog/" class="p3r-btn">
+          <a href="/blog/" class="p3r-btn">
             View all posts
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -67,7 +67,7 @@ const projectsLoading = ref(true)
 
 onMounted(async () => {
   try {
-    const res = await fetch('/blog-web/projects.json')
+    const res = await fetch('/projects.json')
     projects.value = await res.json()
   } catch (e) {
     console.error('Failed to load projects', e)
