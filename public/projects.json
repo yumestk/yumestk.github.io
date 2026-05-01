@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Blog Web",
+    "description": "This personal blog and portfolio site, built with VitePress and Vue 3. P3R-inspired dark UI with geometric design elements.",
+    "emoji": "📝",
+    "url": "https://yumestk.github.io/blog-web/",
+    "tags": ["Vue 3", "VitePress", "CSS"]
+  },
+  {
+    "id": 2,
+    "name": "Project Alpha",
+    "description": "A full-stack web application built with Spring Boot and Vue 3. Features real-time updates and a clean dashboard interface.",
+    "emoji": "💻",
+    "url": "https://github.com/yumestk",
+    "tags": ["Java", "Spring Boot", "Vue"]
+  },
+  {
+    "id": 3,
+    "name": "Mobile App",
+    "description": "Cross-platform mobile application exploring modern UI patterns and smooth animations.",
+    "emoji": "📱",
+    "url": "https://github.com/yumestk",
+    "tags": ["Mobile", "UI/UX"]
+  },
+  {
+    "id": 4,
+    "name": "CLI Tool",
+    "description": "A developer productivity tool that automates repetitive tasks in the development workflow.",
+    "emoji": "⚡",
+    "url": "https://github.com/yumestk",
+    "tags": ["Node.js", "CLI"]
+  },
+  {
+    "id": 5,
+    "name": "Design System",
+    "description": "A component library and design system with P3R-inspired geometric aesthetics and dark mode support.",
+    "emoji": "🎨",
+    "url": "https://github.com/yumestk",
+    "tags": ["CSS", "Components"]
+  }
+]
