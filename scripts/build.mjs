@@ -30,13 +30,12 @@ const icons = {
   down: '<path d="M12 5v14m-5-5 5 5 5-5"/>',
   write: '<path d="m16 3 5 5-12 12H4v-5L16 3Zm-3 3 5 5M4 21h16"/>',
   project: '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M3 12h18m-10 0v3h2v-3"/>',
-  steam: '<circle cx="16.5" cy="7.5" r="5"/><circle cx="16.5" cy="7.5" r="2.5"/><circle cx="6" cy="17" r="3.5"/><path d="m8.5 14.5 4-5m-3.2 9 6-6M1 13.5l5 2"/>',
   x: '<path d="M4 3h4l12 18h-4L4 3Zm0 18 6.5-7.5M14 10.5 20 3"/>',
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/>',
   github: '<path d="M9 19c-4.3 1.3-4.3-2-6-2m12 5v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.9a5.4 5.4 0 0 0-1.5-3.8 5 5 0 0 0-.1-3.8s-1.2-.4-3.9 1.4a13.4 13.4 0 0 0-7 0C4.1.6 2.9 1 2.9 1a5 5 0 0 0-.1 3.8 5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.2 6.6 6.2 6.9a3.4 3.4 0 0 0-.9 2.6V22" transform="translate(2 0) scale(.9)"/>'
 };
 const icon = name => `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
-const socialLinks = `<div class="social-links">${[['github', 'GitHub'], ['steam', 'Steam'], ['x', 'X']].map(([key, label]) => `<a class="social-link" href="${e(config[key])}" target="_blank" rel="noopener noreferrer" aria-label="在 ${label} 找到 ${e(config.name)}">${icon(key)}<span>${label}</span>${icon('arrow')}</a>`).join('')}</div>`;
+const socialLinks = `<div class="social-links">${[['github', 'GitHub'], ['x', 'X']].map(([key, label]) => `<a class="social-link" href="${e(config[key])}" target="_blank" rel="noopener noreferrer" aria-label="在 ${label} 找到 ${e(config.name)}">${icon(key)}<span>${label}</span>${icon('arrow')}</a>`).join('')}</div>`;
 const divider = (label, target) => `<div class="section-divider"><a href="#${target}">${label}${icon('down')}</a></div>`;
 const emptyPosts = `<div class="empty-state"><span class="empty-icon">${icon('write')}</span><h3>新的故事，正在路上。</h3><p>这里还没有文章。下一次相遇，也许就有新的记录。</p></div>`;
 const emptyProjects = `<div class="project-empty"><div><span class="small-label">WORK IN PROGRESS</span><h3>想法慢慢发芽，作品慢慢生长。</h3><p>项目整理中，先去 GitHub 逛逛吧。</p></div><a class="round-link" href="${e(config.github)}" target="_blank" rel="noopener noreferrer" aria-label="查看 yumestk 的 GitHub">${icon('arrow')}</a></div>`;
@@ -52,7 +51,7 @@ function projectList() {
 }
 async function page(route, title, description, content, section, type = 'website') {
   const navigation = [['/', '首页', 'home'], ['/blog/', '文章', 'posts'], ['/projects/', '项目', 'projects'], ['/search/', '搜索', 'search'], ['/about/', '关于', 'about']].map(([href, label, key]) => `<a href="${href}"${section === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
-  const data = { title: title ? `${title} · ${config.name}` : config.title, description, brand: config.title, name: config.name, canonical: config.url + route, image: config.url + config.avatar, type, github: config.github, steam: config.steam, x: config.x, year: new Date().getUTCFullYear(), navigation, content };
+  const data = { title: title ? `${title} · ${config.name}` : config.title, description, brand: config.title, name: config.name, canonical: config.url + route, image: config.url + config.avatar, type, github: config.github, x: config.x, year: new Date().getUTCFullYear(), navigation, content };
   const html = template.replace(/\{\{(\w+)\}\}/g, (_, key) => ['content', 'navigation'].includes(key) ? data[key] : e(data[key]));
   const file = route === '/404.html' ? path.join(out, '404.html') : path.join(out, route, 'index.html');
   await mkdir(path.dirname(file), { recursive: true });
