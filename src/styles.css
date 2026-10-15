@@ -17,7 +17,7 @@
 }
 html {
   scroll-behavior:smooth;
-  scroll-padding-top:32px
+  scroll-padding-top:120px
 }
 body {
   margin:0
@@ -77,6 +77,9 @@ h1,h2,h3,p,figure {
 }
 
 .site-header {
+  position:sticky;
+  top:0;
+  z-index:5;
   height:88px;
   border-bottom:1px solid var(--line);
   background:#ffffffed
@@ -703,6 +706,9 @@ h1,h2,h3,p,figure {
 }
 
 @media(max-width:560px) {
+  html {
+  scroll-padding-top:140px
+}
   .site-header {
   height:auto
 }
