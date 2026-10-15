@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:type" content="{{type}}">
+  <meta property="og:image" content="{{image}}">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="/avatar.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="/"><img src="/avatar.png" alt="" width="26" height="26"><span>{{brand}}</span></a>
+      <nav aria-label="主导航">{{navigation}}</nav>
+    </div>
+  </header>
+  <main id="main">{{content}}</main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand" href="/"><img src="/avatar.png" alt="" width="24" height="24"><span>{{brand}}</span></a>
+      <p>记录，是为了更好地向前。</p>
+      <div class="footer-bottom"><span>© {{year}} {{name}}</span><a href="{{github}}" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#main">回到顶部 ↑</a></div>
+    </div>
+  </footer>
+</body>
+</html>
