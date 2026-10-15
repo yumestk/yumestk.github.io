@@ -189,6 +189,17 @@ h1,h2,h3,p,figure {
   max-width:390px;
   margin-bottom:23px
 }
+.social-links {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px 22px;
+}
+.about-aside .social-links {
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+}
 .social-link {
   display:inline-flex;
   align-items:center;
