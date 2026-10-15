@@ -1,6 +1,6 @@
 # 关于
 
-这里是 Kira，爱好音乐、coding、漫画、番剧以及一切有意思的事物
+这里是 Kirari，爱好音乐、coding、漫画、番剧以及一切有意思的事物
 
 ## 设定
 
@@ -10,7 +10,7 @@
 | 性格 | ENFP |
 | 喜欢的颜色 | 白色 |
 | 喜欢的音乐 | #jpop#ost |
-| 喜欢的游戏 | #jrpg#crpg #vn |
+| 喜欢的游戏 | #jrpg#crpg#vn |
 | 想做的事 | 学钢琴 |
 
 ## 在哪里找到我
@@ -22,4 +22,4 @@
 
 🎮 游戏：
 
-- [https://steamcommunity.com/profiles/76561199706041351](https://steamcommunity.com/profiles/76561199706041351)
+- [Steam](https://steamcommunity.com/profiles/76561199706041351)
