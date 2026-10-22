@@ -61,7 +61,7 @@ aside:
   position: right
   card_author:
     enable: true
-    description: 爱好音乐、coding、漫画、番剧以及一切有意思的事物
+    description: Which Dreamed It
     button:
       enable: true
       icon: fas fa-user
