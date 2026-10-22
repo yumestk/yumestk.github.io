@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yumestk.github.io/sitemap.xml

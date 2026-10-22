@@ -1,0 +1,151 @@
+nav:
+  logo: /avatar.png
+  display_title: true
+  display_post_title: true
+  fixed: true
+menu:
+  首页: / || fas fa-home
+  文章: /blog/ || fas fa-feather-alt
+  项目: /projects/ || fas fa-code
+  关于: /about/ || fas fa-user
+social:
+  fab fa-github: https://github.com/yumestk || GitHub
+  fab fa-x-twitter: https://x.com/yumestk || X
+favicon: /avatar.png
+avatar:
+  img: /avatar.png
+  effect: false
+index_img: /images/home-cover.jpg
+default_top_img: false
+archive_img: false
+tag_img: false
+category_img: false
+footer_img: false
+background: false
+index_site_info_top: 39%
+index_top_img_height: 76vh
+subtitle:
+  enable: true
+  effect: false
+  source: false
+  sub:
+    - 在自己的节奏里，慢慢生长。
+index_layout: 3
+index_post_content:
+  method: 2
+  length: 160
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  default_cover:
+    - /images/home-cover.jpg
+toc:
+  post: true
+  page: true
+  number: false
+  expand: false
+post_copyright:
+  enable: false
+footer:
+  owner:
+    enable: true
+    since: 2026
+  copyright:
+    enable: true
+    version: false
+  custom_text: 记录，是为了更好地向前。
+aside:
+  enable: true
+  mobile: false
+  position: right
+  card_author:
+    enable: true
+    description: 爱好音乐、coding、漫画、番剧以及一切有意思的事物
+    button:
+      enable: true
+      icon: fas fa-user
+      text: 关于我
+      link: /about/
+  card_announcement:
+    enable: true
+    content: 欢迎来到我的小小空间，随意看看，慢慢来。
+  card_recent_post:
+    enable: true
+    limit: 5
+  card_categories:
+    enable: true
+  card_tags:
+    enable: true
+  card_archives:
+    enable: true
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: false
+readmode: true
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: false
+search:
+  use: local_search
+  placeholder: 搜索文章、标签或关键词
+  local_search:
+    preload: false
+    top_n_per_article: 2
+    pagination:
+      enable: false
+share:
+  use: false
+comments:
+  use: false
+busuanzi:
+  site_uv: false
+  site_pv: false
+  page_pv: false
+wordcount:
+  enable: false
+preloader:
+  enable: false
+pjax:
+  enable: false
+lazyload:
+  enable: false
+lightbox: false
+error_404:
+  enable: true
+  subtitle: 这一页暂时不在这里，回到首页重新出发吧。
+  background: /images/home-cover.jpg
+font:
+  font_family: '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif'
+  code_font_family: 'Menlo, Monaco, Consolas, monospace'
+  global_font_size: 15px
+hr_icon:
+  enable: false
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/custom.css?v=hexo-1">
+  bottom:
+    - <script src="/js/site.js?v=hexo-1" defer></script>
+CDN:
+  internal_provider: local
+  third_party_provider: jsdelivr
+  version: true
+  option:
+    fontawesome: /lib/fontawesome/css/all.min.css
+theme_color:
+  enable: true
+  main: "#a77a6e"
+  paginator: "#a77a6e"
+  button_hover: "#815d53"
+  text_selection: "#c8a99a"
+  link_color: "#956e5e"
+  meta_color: "#88776e"
+  hr_color: "#e7d9cf"
+  code_foreground: "#956e5e"
+  code_background: "rgba(167, 122, 110, .05)"
+  toc_color: "#a77a6e"
+  blockquote_padding_color: "#c8a99a"
+  blockquote_background_color: "#f6f0eb"
+  scrollbar_color: "#c6a79c"

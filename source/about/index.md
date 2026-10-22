@@ -1,4 +1,10 @@
-# 关于
+---
+title: 关于
+date: 2026-10-22 12:00:00
+type: about
+top_img: false
+comments: false
+---
 
 这里是 Kirari，爱好音乐、coding、漫画、番剧以及一切有意思的事物
 

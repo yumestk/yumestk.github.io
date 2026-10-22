@@ -1,4 +1,7 @@
 node_modules/
+public/
+db.json
+.deploy_git/
 dist/
 .DS_Store
 *.local
