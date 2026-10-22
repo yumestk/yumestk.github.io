@@ -51,7 +51,7 @@ function projectList() {
 }
 async function page(route, title, description, content, section, type = 'website') {
   const navigation = [['/', '首页', 'home'], ['/blog/', '文章', 'posts'], ['/projects/', '项目', 'projects'], ['/search/', '搜索', 'search'], ['/about/', '关于', 'about']].map(([href, label, key]) => `<a href="${href}"${section === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
-  const data = { title: title ? `${title} · ${config.name}` : config.title, description, brand: config.title, name: config.name, canonical: config.url + route, image: config.url + config.avatar, type, github: config.github, x: config.x, year: new Date().getUTCFullYear(), navigation, content };
+  const data = { title: title ? `${title} · ${config.name}` : config.title, description, brand: config.title, name: config.name, canonical: config.url + route, image: config.url + (section === 'home' ? config.cover : config.avatar), type, github: config.github, x: config.x, year: new Date().getUTCFullYear(), navigation, content };
   const html = template.replace(/\{\{(\w+)\}\}/g, (_, key) => ['content', 'navigation'].includes(key) ? data[key] : e(data[key]));
   const file = route === '/404.html' ? path.join(out, '404.html') : path.join(out, route, 'index.html');
   await mkdir(path.dirname(file), { recursive: true });
@@ -59,7 +59,7 @@ async function page(route, title, description, content, section, type = 'website
 }
 const heading = (label, title, description) => `<header class="page-heading"><span class="small-label">${label}</span><h1>${title}</h1><p>${description}</p></header>`;
 await page('/', '', config.description, `
-<section class="hero-grid"><div class="hero container"><div class="hero-copy"><span class="hero-eyebrow"><span></span> A LITTLE SPACE ON THE INTERNET</span><h1>${e(config.name)}<span class="title-dot">.</span></h1><p class="tagline">${e(config.tagline)}</p><p class="hero-description">${e(config.description)}</p>${socialLinks}</div><figure class="hero-portrait"><img src="${e(config.avatar)}" alt="${e(config.name)} 的头像" width="350" height="350" fetchpriority="high"><figcaption>HELLO, WORLD <span>✳</span></figcaption></figure></div></section>
+<section class="home-hero" aria-labelledby="home-title"><img class="home-cover" src="${e(config.cover)}" alt="御坂美琴主题拼贴封面" width="1121" height="600" fetchpriority="high"><div class="hero-copy"><span class="hero-eyebrow">A LITTLE SPACE ON THE INTERNET</span><h1 id="home-title">${e(config.name)}<span class="title-dot">.</span></h1><p class="tagline">${e(config.tagline)}</p><p class="hero-description">${e(config.description)}</p>${socialLinks}</div></section>
 ${divider('我写的文章', 'writing')}
 <section class="container home-section" id="writing"><div class="section-heading"><div><span class="small-label">WORDS & THOUGHTS</span><h2>文章</h2></div><span class="section-note">一些思考，一点记录。</span></div>${posts.length ? postList(posts.slice(0, 5)) : emptyPosts}<a class="text-link" href="/blog/">查看所有文章 <span>→</span></a></section>
 ${divider('我在做的事情', 'projects')}
