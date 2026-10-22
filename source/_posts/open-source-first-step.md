@@ -8,6 +8,7 @@ tags:
   - dubbo-go
   - 开源
 description: 第一次提 PR 被 merge，具有纪念意义的一天。
+cover: /images/open-source-first-step/cover.webp
 ---
 
 第一次提 PR 被merge，具有纪念意义的一天
