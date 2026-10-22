@@ -29,7 +29,7 @@ subtitle:
   effect: false
   source: false
   sub:
-    - 在自己的节奏里，慢慢生长。
+    - Down the Rabbit-Hole
 index_layout: 3
 index_post_content:
   method: 2
@@ -54,7 +54,7 @@ footer:
   copyright:
     enable: true
     version: false
-  custom_text: 记录，是为了更好地向前。
+  custom_text: It’s My Own Invention
 aside:
   enable: true
   mobile: false
@@ -69,7 +69,7 @@ aside:
       link: /about/
   card_announcement:
     enable: true
-    content: 欢迎来到我的小小空间，随意看看，慢慢来。
+    content: 欢迎来到我的小小空间，随意看看。
   card_recent_post:
     enable: true
     limit: 5
