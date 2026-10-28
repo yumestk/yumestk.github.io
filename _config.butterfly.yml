@@ -68,19 +68,19 @@ aside:
       text: 关于我
       link: /about/
   card_announcement:
-    enable: true
+    enable: false
     content: 欢迎来到我的小小空间，随意看看。
   card_recent_post:
     enable: true
     limit: 5
   card_categories:
-    enable: true
+    enable: false
   card_tags:
-    enable: true
+    enable: false
   card_archives:
-    enable: true
+    enable: false
   card_webinfo:
-    enable: true
+    enable: false
     post_count: true
     last_push_date: false
 readmode: true
