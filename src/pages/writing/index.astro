@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import PostList from '../../components/PostList.astro'
+import { getPosts } from '../../data/site'
+const posts = await getPosts()
+---
+<SiteLayout title="Writing" section="writing" description="Notes on software architecture, open source, and things I’ve tried.">
+  <header class="page-heading">
+    <h1>Writing</h1>
+    <p>Notes on software architecture, open source, and things I’ve tried.</p>
+  </header>
+  <PostList {posts} showDescription />
+</SiteLayout>

@@ -1,0 +1,48 @@
+---
+import { Captions, ClipboardList, GitFork, HandCoins, HandHelping, NotebookPen, ScanSearch } from '@lucide/astro'
+import type { projects } from '../data/site'
+interface Props {
+  project: (typeof projects)[number]
+  expanded?: boolean
+}
+const { project, expanded } = Astro.props
+
+const pipeline = project.id === 'campusgo'
+  ? {
+      label: 'Task Flow',
+      steps: [
+        { Icon: ClipboardList, label: 'Post' },
+        { Icon: HandHelping, label: 'Claim' },
+        { Icon: HandCoins, label: 'Settle' },
+      ],
+    }
+  : {
+      label: 'Study Mode',
+      steps: [
+        { Icon: Captions, label: 'Transcript' },
+        { Icon: ScanSearch, label: 'Evidence' },
+        { Icon: NotebookPen, label: 'Study notes' },
+      ],
+    }
+---
+<article class="project-card" id={expanded ? project.id : undefined}>
+  <a class:list={['project-visual', project.id]} href={project.url} aria-label={`View ${project.name} on GitHub`}>
+    <div class="pipeline" aria-hidden="true">
+      <div class="pipeline-label">
+        <span class="play-signal">▶</span> {project.name} <span>{pipeline.label}</span>
+      </div>
+      <div class="pipeline-steps">
+        {pipeline.steps.map(({ Icon, label }) => <span><Icon size={19} /> {label}</span>)}
+      </div>
+    </div>
+  </a>
+  <div class="project-copy">
+    <p class="metadata">{project.type}</p>
+    <h3><a href={project.url}>{project.name}<GitFork size={16} aria-hidden="true" /></a></h3>
+    <p>{project.summary}</p>
+    {expanded && <p>{project.detail}</p>}
+    <ul class="tags flex flex-wrap gap-1.5" aria-label="Technologies">
+      {project.stack.map((tool) => <li>{tool}</li>)}
+    </ul>
+  </div>
+</article>

@@ -1,0 +1,115 @@
+---
+import { Image as ImageIcon } from '@lucide/astro'
+import { pathTo, type CollectionItem } from '../data/site'
+
+interface Props {
+  items: CollectionItem[]
+  square?: boolean
+}
+
+const { items, square = false } = Astro.props
+---
+<ul class:list={['shelf-grid', { 'square-covers': square }]}>
+  {items.map((item) => (
+    <li class="shelf-item">
+      <div class="shelf-cover">
+        {item.cover ? (
+          <img src={pathTo(item.cover)} alt="" decoding="async" loading="lazy" />
+        ) : (
+          <span class="shelf-placeholder">
+            <ImageIcon size={22} stroke-width={1.4} aria-hidden="true" /> No cover
+          </span>
+        )}
+      </div>
+      <h3 lang={item.lang}>{item.title}</h3>
+      <div class="shelf-meta">
+        {'artist' in item ? (
+          <>
+            <span>{item.artist}</span>
+            <time datetime={String(item.year)}>{item.year}</time>
+          </>
+        ) : (
+          <>
+            <span>{item.kind}</span>
+            {item.rating !== undefined && <span class="shelf-rating">{item.rating.toFixed(1)}<span>/10</span></span>}
+          </>
+        )}
+      </div>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .shelf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.25rem), 1fr));
+    gap: 1.65rem clamp(.8rem, 2vw, 1.15rem);
+    padding: 0;
+    list-style: none;
+  }
+
+  .shelf-item { min-inline-size: 0; }
+
+  .shelf-cover {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 3 / 4;
+    overflow: clip;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--surface);
+  }
+
+  .square-covers .shelf-item { max-inline-size: 12rem; }
+  .square-covers .shelf-cover { aspect-ratio: 1; }
+
+  .shelf-cover img {
+    inline-size: 100%;
+    block-size: 100%;
+    min-block-size: 0;
+    object-fit: cover;
+  }
+
+  .shelf-placeholder {
+    display: grid;
+    justify-items: center;
+    gap: .45rem;
+    color: var(--quiet);
+    font-size: .8rem;
+  }
+
+  .shelf-item h3 {
+    margin-block: .62rem .14rem;
+    font-size: .96rem;
+    font-weight: 590;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .shelf-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .15rem .55rem;
+    color: var(--muted);
+    font-size: .78rem;
+  }
+
+  .shelf-rating {
+    color: var(--text);
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .shelf-rating span { color: var(--quiet); }
+
+  @media (max-width: 39rem) {
+    .shelf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .shelf-cover { transition: border-color 180ms ease, transform 180ms ease; }
+    .shelf-item:hover .shelf-cover { border-color: var(--quiet); transform: translateY(-3px); }
+  }
+</style>

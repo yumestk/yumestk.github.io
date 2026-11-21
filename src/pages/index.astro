@@ -1,0 +1,55 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro'
+import SocialLinks from '../components/SocialLinks.astro'
+import ProjectCard from '../components/ProjectCard.astro'
+import ContributionList from '../components/ContributionList.astro'
+import PostList from '../components/PostList.astro'
+import Shelf from '../components/Shelf.astro'
+import { acgnCollection, getPosts, pathTo, profile, projects } from '../data/site'
+
+const posts = (await getPosts()).slice(0, 3)
+---
+<SiteLayout section="home">
+  <section class="hero" aria-labelledby="intro-name">
+    <div class="hero-identity">
+      <img class="hero-avatar" src={pathTo('/images/avatar.png')} alt="" width="1200" height="1200" fetchpriority="high" />
+      <div class="hero-name">
+        <h1 id="intro-name">{profile.name}</h1>
+        <p class="hero-role">{profile.role}</p>
+      </div>
+    </div>
+    <div class="hero-intro">
+      <p class="hero-bio">{profile.intro}</p>
+      <p class="hero-bio">{profile.interests}</p>
+      <SocialLinks />
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="selected-work">
+    <div class="section-header">
+      <h2 id="selected-work">Selected work</h2>
+      <a class="text-link" href={pathTo('/work/')}>View all work</a>
+    </div>
+    <div class="project-grid">
+      {projects.map(project => <ProjectCard {project} />)}
+    </div>
+    <h3 class="subheading">Open source</h3>
+    <ContributionList limit={2} />
+  </section>
+
+  <section class="home-section" aria-labelledby="recent-writing">
+    <div class="section-header">
+      <h2 id="recent-writing">Recent writing</h2>
+      <a class="text-link" href={pathTo('/writing/')}>All posts</a>
+    </div>
+    <PostList {posts} />
+  </section>
+
+  <section class="home-section" aria-labelledby="side-b">
+    <div class="section-header">
+      <h2 id="side-b">Side B</h2>
+      <a class="text-link" href={pathTo('/side-b/')}>Explore Side B</a>
+    </div>
+    <Shelf items={acgnCollection.slice(0, 4)} />
+  </section>
+</SiteLayout>

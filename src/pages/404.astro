@@ -1,0 +1,10 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro'
+import { pathTo } from '../data/site'
+---
+<SiteLayout title="Page not found">
+  <header class="page-heading">
+    <h1>Page not found</h1>
+    <p><a class="text-link" href={pathTo('/')}>Go home</a> or <a class="text-link" href={pathTo('/writing/')}>browse the writing archive</a>.</p>
+  </header>
+</SiteLayout>

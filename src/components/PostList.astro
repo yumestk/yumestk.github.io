@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { formatDate, pathTo } from '../data/site'
+interface Props {
+  posts: CollectionEntry<'writing'>[]
+  showDescription?: boolean
+}
+const { posts, showDescription } = Astro.props
+---
+<ul class="list-rows writing-list">
+  {posts.map(({ id, data }) => (
+    <li>
+      <a class:list={['writing-row', { 'writing-row-full': showDescription }]} href={pathTo(`/blog/${id}/`)}>
+        {data.cover && <img src={pathTo(data.cover)} alt="" width="62" height="54" loading="lazy" />}
+        <div>
+          <p class="row-title" lang="zh-CN">{data.title}</p>
+          {showDescription && <p class="row-description" lang="zh-CN">{data.description}</p>}
+          {showDescription && <ul class="tags flex flex-wrap gap-1.5" aria-label="Tags">{data.tags.map(tag => <li>{tag}</li>)}</ul>}
+        </div>
+        <time class="metadata" datetime={data.date.toISOString()}>{formatDate(data.date)}</time>
+      </a>
+    </li>
+  ))}
+</ul>

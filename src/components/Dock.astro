@@ -1,0 +1,21 @@
+---
+import { House, Layers2, BookOpen, Disc3, UserRound } from '@lucide/astro'
+import { pathTo } from '../data/site'
+
+const { section } = Astro.props
+const items = [
+  { label: 'Home', key: 'home', href: '/', Icon: House },
+  { label: 'Work', key: 'work', href: '/work/', Icon: Layers2 },
+  { label: 'Writing', key: 'writing', href: '/writing/', Icon: BookOpen },
+  { label: 'Side B', key: 'side-b', href: '/side-b/', Icon: Disc3 },
+  { label: 'About', key: 'about', href: '/about/', Icon: UserRound },
+]
+---
+<nav class="dock" aria-label="Main navigation">
+  {items.map(({ label, key, href, Icon }) => (
+    <a href={pathTo(href)} aria-current={section === key ? (Astro.url.pathname === pathTo(href) ? 'page' : 'location') : undefined}>
+      <Icon size={20} stroke-width={1.7} aria-hidden="true" />
+      <span>{label}</span>
+    </a>
+  ))}
+</nav>

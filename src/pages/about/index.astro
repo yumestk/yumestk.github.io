@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import SocialLinks from '../../components/SocialLinks.astro'
+import { pathTo, socials } from '../../data/site'
+---
+<SiteLayout title="About" section="about" description="Meet Kirari, the computing undergraduate behind yumestk.">
+  <header class="page-heading about-heading">
+    <img src={pathTo('/images/avatar.png')} alt="" width="76" height="76" />
+    <div><h1>About</h1><p>I’m Kirari. Online, I go by yumestk.</p></div>
+  </header>
+  <div class="about-copy">
+    <p>I’m a computing undergraduate interested in backend development, distributed systems, and how to build AI agents that can show where their answers came from.</p>
+    <p>I use my projects to learn those things in practice. VedioMind has me thinking about source evidence and recoverable jobs. With CampusGo, I’m studying how a task moves between services, especially when messages are delayed or repeated.</p>
+    <p>Contributing to <a href="https://github.com/apache/dubbo-go/pull/3776">dubbo-go</a> and <a href="https://github.com/AlexStocks/getty/pull/163">Getty</a> has been a good way to get comfortable reading code I didn’t write. I keep notes about the process in <a href={pathTo('/writing/')}>Writing</a>.</p>
+    <p>Outside of code, I like visual novels, anime, games, J-pop, soundtracks, and drawing. Figuring out how to stream Galgames to my Mac turned into a <a href={pathTo('/blog/galgame-remote-streaming/')}>networking write-up</a>.</p>
+  </div>
+  <section class="content-section" aria-labelledby="contact">
+    <div class="section-header"><h2 id="contact">Find me</h2></div>
+    <SocialLinks />
+    <p class="about-email"><a class="text-link" href={`mailto:${socials.email}`}>{socials.email}</a></p>
+  </section>
+</SiteLayout>

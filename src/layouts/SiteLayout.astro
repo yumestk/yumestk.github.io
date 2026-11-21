@@ -1,0 +1,105 @@
+---
+import '@fontsource-variable/geist'
+import '@fontsource-variable/geist-mono'
+import '../styles/site.css'
+import { Moon, Sun, ChevronDown } from '@lucide/astro'
+import Dock from '../components/Dock.astro'
+import { pathTo, profile, socials } from '../data/site'
+
+interface Props {
+  title?: string
+  description?: string
+  section?: string
+  image?: string
+}
+const { title, description = profile.intro, section, image } = Astro.props
+const pageTitle = title ? `${title} | ${profile.name}` : `${profile.name} | Backend Developer & AI Agent Builder`
+const canonical = Astro.site && new URL(Astro.url.pathname, Astro.site)
+const themeOptions = [
+  { value: 'system', label: 'System' },
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+  { value: 'vn-night', label: 'VN Night' },
+  { value: 'blue-hour', label: 'Blue Hour' },
+]
+const explicitThemes = themeOptions.slice(1).map(({ value }) => value)
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <script define:vars={{ explicitThemes }}>
+      try {
+        const theme = localStorage.getItem('yumestk-theme')
+        if (explicitThemes.includes(theme)) {
+          document.documentElement.dataset.theme = theme
+          document.querySelector('meta[name="color-scheme"]').content = theme === 'light' ? 'light' : 'dark'
+        }
+      } catch {}
+    </script>
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {image && Astro.site && <meta property="og:image" content={new URL(pathTo(image), Astro.site)} />}
+    <link rel="icon" href={pathTo('/images/avatar.png')} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header shell">
+      <a href={pathTo('/')} class="wordmark">
+        <span aria-hidden="true" class="wordmark-symbol"><i></i><i></i><i></i></span>
+        Kirari in Wonderland
+      </a>
+      <div class="theme-picker" hidden>
+        <Moon class="theme-moon pointer-events-none" size={15} aria-hidden="true" />
+        <Sun class="theme-sun pointer-events-none" size={15} aria-hidden="true" />
+        <select id="theme" aria-label="Color theme">
+          {themeOptions.map(({ value, label }) => <option value={value}>{label}</option>)}
+        </select>
+        <ChevronDown class="theme-chevron pointer-events-none" size={12} aria-hidden="true" />
+      </div>
+    </header>
+    <main id="main" class="shell">
+      <slot />
+    </main>
+    <footer class="shell site-footer">
+      <span>© {new Date().getFullYear()} yumestk</span>
+      <a href={`mailto:${socials.email}`}>Get in touch</a>
+    </footer>
+    <Dock {section} />
+    <script>
+      const picker = document.querySelector<HTMLSelectElement>('#theme')
+      const indicator = document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]')
+      const key = 'yumestk-theme'
+      const supportedThemes = new Set(Array.from(picker?.options ?? [], option => option.value))
+
+      function applyTheme(value: string | null) {
+        const theme = value && supportedThemes.has(value) ? value : 'system'
+        const explicit = theme !== 'system'
+        if (explicit) document.documentElement.dataset.theme = theme
+        else delete document.documentElement.dataset.theme
+        if (indicator) indicator.content = explicit ? (theme === 'light' ? 'light' : 'dark') : 'dark light'
+        if (picker) picker.value = theme
+      }
+
+      if (picker) {
+        applyTheme(document.documentElement.dataset.theme ?? null)
+        picker.parentElement?.removeAttribute('hidden')
+        picker.addEventListener('change', () => {
+          applyTheme(picker.value)
+          try {
+            if (picker.value === 'system') localStorage.removeItem(key)
+            else localStorage.setItem(key, picker.value)
+          } catch {}
+        })
+        window.addEventListener('storage', (event) => {
+          if (event.key === key || event.key === null) applyTheme(event.newValue)
+        })
+      }
+    </script>
+  </body>
+</html>

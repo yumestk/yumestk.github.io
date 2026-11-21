@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import ProjectCard from '../../components/ProjectCard.astro'
+import ContributionList from '../../components/ContributionList.astro'
+import { projects } from '../../data/site'
+---
+<SiteLayout title="Work" section="work" description="Backend projects, AI learning tools, and open-source contributions by yumestk.">
+  <header class="page-heading">
+    <h1>Work</h1>
+    <p>Projects I build to learn how backends behave when the happy path ends, and the fixes I’ve contributed upstream.</p>
+  </header>
+  <section class="content-section" aria-labelledby="project-title">
+    <div class="section-header"><h2 id="project-title">Projects</h2></div>
+    <div class="project-grid">
+      {projects.map(project => <ProjectCard {project} expanded />)}
+    </div>
+  </section>
+  <section class="content-section" aria-labelledby="oss-title">
+    <div class="section-header"><h2 id="oss-title">Open source</h2></div>
+    <ContributionList />
+  </section>
+</SiteLayout>

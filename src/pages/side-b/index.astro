@@ -1,0 +1,23 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import Shelf from '../../components/Shelf.astro'
+import { acgnCollection, musicCollection } from '../../data/site'
+---
+<SiteLayout title="Side B" section="side-b" description="My personal collection of ACGN works and music.">
+  <header class="page-heading">
+    <h1>Side B</h1>
+    <p>My personal collection of ACGN works and music.</p>
+  </header>
+
+  <section class="home-section" aria-labelledby="acgn-collection">
+    <div class="section-header"><h2 id="acgn-collection">ACGN Collection</h2></div>
+    <Shelf items={acgnCollection} />
+  </section>
+
+  {musicCollection.length > 0 && (
+    <section class="home-section" aria-labelledby="music">
+      <div class="section-header"><h2 id="music">Music Collection</h2></div>
+      <Shelf items={musicCollection} square />
+    </section>
+  )}
+</SiteLayout>

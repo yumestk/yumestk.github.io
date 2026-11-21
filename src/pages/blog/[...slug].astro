@@ -1,0 +1,33 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { render, type CollectionEntry } from 'astro:content'
+import { ChevronLeft } from '@lucide/astro'
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import { getPosts, formatDate, pathTo } from '../../data/site'
+export const getStaticPaths = (async () => {
+  return (await getPosts()).map((post) => ({ params: { slug: post.id }, props: { post } }))
+}) satisfies GetStaticPaths
+
+const { post } = Astro.props as { post: CollectionEntry<'writing'> }
+const { data } = post
+const { Content, headings } = await render(post)
+const sections = headings.filter(({ depth }) => depth === 2)
+---
+<SiteLayout title={data.title} description={data.description} image={data.cover} section="writing">
+  <article class="post" lang="zh-CN">
+    <a class="back-link" href={pathTo('/writing/')} lang="en"><ChevronLeft size={16} aria-hidden="true" /> All writing</a>
+    <header class="post-heading">
+      <p class="metadata" lang="en"><time datetime={data.date.toISOString()}>{formatDate(data.date)}</time></p>
+      <h1>{data.title}</h1>
+      <ul class="tags flex flex-wrap gap-1.5" aria-label="标签">{data.tags.map(tag => <li>{tag}</li>)}</ul>
+    </header>
+    {data.cover && <img class="post-cover" src={pathTo(data.cover)} alt={data.coverAlt ?? ''} fetchpriority="high" />}
+    {sections.length > 2 && (
+      <details class="post-toc">
+        <summary>本文目录</summary>
+        <ul>{sections.map(({ slug, text }) => <li><a href={`#${slug}`}>{text}</a></li>)}</ul>
+      </details>
+    )}
+    <div class="prose"><Content /></div>
+  </article>
+</SiteLayout>
