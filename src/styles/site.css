@@ -172,6 +172,27 @@ a, button, select { -webkit-tap-highlight-color: transparent; }
 .writing-row > time { flex: 0 0 auto; }
 .writing-row-full { align-items: flex-start; padding-block: 1rem; }
 .writing-row-full .tags { margin-top: .6rem; }
+.weekly-issue { color: var(--accent, var(--quiet)); text-transform: uppercase; }
+
+.writing-filters { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1rem; }
+.writing-filters label { cursor: pointer; }
+.writing-filters label > span {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding-inline: .85rem;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: .875rem;
+}
+.writing-filters label:hover > span { color: var(--text); }
+.writing-filters :checked + span { background: var(--raised); border-color: var(--line); color: var(--accent, var(--text)); }
+.writing-filters :focus-visible + span { outline: 2px solid var(--accent, var(--text)); outline-offset: 2px; }
+.writing-archive .writing-list { border-bottom: 1px solid var(--line); }
+.writing-archive .writing-list > li:last-child { border-bottom: 0; }
+.writing-archive:has(input[value="articles"]:checked) [data-post-kind="weekly"],
+.writing-archive:has(input[value="weekly"]:checked) [data-post-kind="article"] { display: none; }
 
 .page-heading { margin: 3.55rem 0 2.7rem; }
 .page-heading h1 { font-size: clamp(3rem, 9vw, 4.2rem); }

@@ -17,9 +17,12 @@ const sections = headings.filter(({ depth }) => depth === 2)
   <article class="post" lang="zh-CN">
     <a class="back-link" href={pathTo('/writing/')} lang="en"><ChevronLeft size={16} aria-hidden="true" /> All writing</a>
     <header class="post-heading">
-      <p class="metadata" lang="en"><time datetime={data.date.toISOString()}>{formatDate(data.date)}</time></p>
+      <p class="metadata" lang="en">
+        {data.weeklyIssue && <><span class="weekly-issue">Weekly #{String(data.weeklyIssue).padStart(3, '0')}</span> <span aria-hidden="true">·</span>{' '}</>}
+        <time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>
+      </p>
       <h1>{data.title}</h1>
-      <ul class="tags flex flex-wrap gap-1.5" aria-label="标签">{data.tags.map(tag => <li>{tag}</li>)}</ul>
+      {data.tags.length > 0 && <ul class="tags flex flex-wrap gap-1.5" aria-label="标签">{data.tags.map(tag => <li>{tag}</li>)}</ul>}
     </header>
     {data.cover && <img class="post-cover" src={pathTo(data.cover)} alt={data.coverAlt ?? ''} fetchpriority="high" />}
     {sections.length > 2 && (

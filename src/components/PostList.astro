@@ -9,13 +9,18 @@ const { posts, showDescription } = Astro.props
 ---
 <ul class="list-rows writing-list">
   {posts.map(({ id, data }) => (
-    <li>
+    <li data-post-kind={data.weeklyIssue ? 'weekly' : 'article'}>
       <a class:list={['writing-row', { 'writing-row-full': showDescription }]} href={pathTo(`/blog/${id}/`)}>
-        {data.cover && <img src={pathTo(data.cover)} alt="" width="62" height="54" loading="lazy" />}
+        {data.cover && !data.weeklyIssue && <img src={pathTo(data.cover)} alt="" width="62" height="54" loading="lazy" />}
         <div>
+          {data.weeklyIssue && <p class="metadata weekly-issue">Weekly #{String(data.weeklyIssue).padStart(3, '0')}</p>}
           <p class="row-title" lang="zh-CN">{data.title}</p>
-          {showDescription && <p class="row-description" lang="zh-CN">{data.description}</p>}
-          {showDescription && <ul class="tags flex flex-wrap gap-1.5" aria-label="Tags">{data.tags.map(tag => <li>{tag}</li>)}</ul>}
+          {showDescription && !data.weeklyIssue && (
+            <>
+              <p class="row-description" lang="zh-CN">{data.description}</p>
+              <ul class="tags flex flex-wrap gap-1.5" aria-label="Tags">{data.tags.map(tag => <li>{tag}</li>)}</ul>
+            </>
+          )}
         </div>
         <time class="metadata" datetime={data.date.toISOString()}>{formatDate(data.date)}</time>
       </a>

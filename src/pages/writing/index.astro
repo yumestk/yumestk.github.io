@@ -3,11 +3,28 @@ import SiteLayout from '../../layouts/SiteLayout.astro'
 import PostList from '../../components/PostList.astro'
 import { getPosts } from '../../data/site'
 const posts = await getPosts()
+const description = 'Notes on code, life, and everything in between.'
+const filters = [
+  { value: 'all', label: 'All' },
+  { value: 'articles', label: 'Articles' },
+  { value: 'weekly', label: 'Weekly' },
+]
 ---
-<SiteLayout title="Writing" section="writing" description="Notes on software architecture, open source, and things I’ve tried.">
+<SiteLayout title="Writing" section="writing" {description}>
   <header class="page-heading">
     <h1>Writing</h1>
-    <p>Notes on software architecture, open source, and things I’ve tried.</p>
+    <p>{description}</p>
   </header>
-  <PostList {posts} showDescription />
+  <div class="writing-archive">
+    <fieldset class="writing-filters">
+      <legend class="sr-only">Filter writing</legend>
+      {filters.map(({ value, label }) => (
+        <label>
+          <input class="sr-only" type="radio" name="writing-filter" value={value} checked={value === 'all'} />
+          <span>{label}</span>
+        </label>
+      ))}
+    </fieldset>
+    <PostList {posts} showDescription />
+  </div>
 </SiteLayout>

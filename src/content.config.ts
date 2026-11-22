@@ -9,6 +9,7 @@ const writing = defineCollection({
     date: z.coerce.date(),
     updated: z.coerce.date().optional(),
     description: z.string(),
+    weeklyIssue: z.number().int().positive().optional(),
     categories: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
